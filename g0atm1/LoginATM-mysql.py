@@ -61,7 +61,7 @@ try:
                     else:
                         is_forbidden = 1
                         login_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                        print("登录失败，请等待10min")
+                        print("登录失败，请等待3min")
 
                     # 更新数据库的Mysql语句
                     sql = "update t_customer set is_forbidden = %d , login_time = '%s' where name='%s'"%(is_forbidden,login_time,userName)
