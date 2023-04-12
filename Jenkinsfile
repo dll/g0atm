@@ -3,27 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'python -m py_compile g0atm0/login_atm_mysql.py'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_login_atm_mysql.py'
-            }
-            post {
-                always {
-                    junit 'test-reports/results.xml'
-                }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                bat 'pyinstaller --onefile g0atm0/login_atm_mysql.py'
-            }
-            post {
-                success {
-                    archiveArtifacts 'dist/LoginATM-mysql.exe'
-                }
+                sh 'python -m py_compile /sources/add2vals.py /sources/calc.py'
             }
         }
     }
