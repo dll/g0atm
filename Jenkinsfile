@@ -1,4 +1,5 @@
-// 2023-04-13，改写自Jenkins docs官网simple-python-pyinstaller-app的Docker版本
+//2023-04-13
+//ldl 改写自Jenkins docs官网simple-python-pyinstaller-app的Docker版本
 pipeline {
     agent any
     stages {
