@@ -1,5 +1,6 @@
 //2023-04-13
 //ldl 改写自Jenkins docs官网simple-python-pyinstaller-app的Docker版本
+//JDK11，JDK17 +
 pipeline {
     agent any
     stages {
