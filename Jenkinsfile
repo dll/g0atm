@@ -1,4 +1,4 @@
-# 2023-04-13，改写自Jenkins docs官网Docker版本
+// 2023-04-13，改写自Jenkins docs官网Docker版本
 pipeline {
     agent any
     stages {
