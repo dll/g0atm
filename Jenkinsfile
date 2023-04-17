@@ -7,10 +7,10 @@ pipeline {
             }
         }
         stage('Test') {
-            echo "待开发"
-            //steps {
-            //    bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_LoginATM-mysql.py'
-            //}
+            steps {
+                echo "待开发"
+                //bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_LoginATM-mysql.py'
+            }
             //post {
             //    always {
             //        junit 'test-reports/results.xml'
