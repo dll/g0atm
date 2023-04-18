@@ -36,14 +36,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "待开发"
-                //bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_LoginATM-mysql.py'
+                //echo "待开发"
+                bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_login_atm_mysql.py'
             }
-            //post {
-            //    always {
-            //        junit 'test-reports/results.xml'
-            //    }
-            //}
+            post {
+                always {
+                    junit 'test-reports/results.xml'
+                }
+            }
         }
         stage('Deliver') {
             steps {
