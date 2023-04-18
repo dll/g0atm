@@ -1,17 +1,14 @@
-//2023-04-13
-//ldl 改写自Jenkins docs官网simple-python-pyinstaller-app的Docker版本
-//JDK11，JDK17 +
 pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
-                sh 'python -m py_compile /sources/add2vals.py /sources/calc.py'
+                bat 'python -m py_compile g0atm0/login_atm_mysql.py'
             }
         }
         stage('Test') {
             steps {
-                bat 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
+                bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_login_atm_mysql.py'
             }
             post {
                 always {
@@ -21,11 +18,11 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller --onefile sources/add2vals.py'
+                bat 'pyinstaller --onefile g0atm0/login_atm_mysql.py'
             }
             post {
                 success {
-                    archiveArtifacts 'dist/add2vals.exe'
+                    archiveArtifacts 'dist/LoginATM-mysql.exe'
                 }
             }
         }
