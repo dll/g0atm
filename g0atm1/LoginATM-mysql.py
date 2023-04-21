@@ -25,6 +25,7 @@ try:
                     #根据顾客名查出顾客信息
                     sql = 'select * from t_customer where name = %s'
                     result =  cursor.execute(sql,userName);
+                    print(result)
                     # 判断是否存在此顾客
                     if 0==result:
                         print("无此顾客名存在！")
