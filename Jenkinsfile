@@ -22,7 +22,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts 'dist/LoginATM.exe'
+                    archiveArtifacts 'dist/login_atm.exe'
                 }
             }
         }
