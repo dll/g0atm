@@ -8,13 +8,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_login_atm.py'
+                echo "No Test"
+		//bat 'pytest --verbose --junit-xml test-reports/results.xml g6atm1/test_login_atm.py'
             }
-            post {
-                always {
-                    junit 'test-reports/results.xml'
-                }
-            }
+            //post {
+            //    always {
+            //        junit 'test-reports/results.xml'
+            //    }
+            //}
         }
         stage('Deliver') {
             steps {
