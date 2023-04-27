@@ -3,13 +3,9 @@
 (2) 顾客在输入密码时，如果连续输入三次错误，则该顾客被锁定一段时间;
 (3) 顾客被锁定一段时间后，可再次进行尝试登录；
 '''
+
 import psycopg2.extras
 import datetime
-
-'''
-pip3 install pymysql -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-'''
-
 
 def isForbidden(cisforbidden, clogintime):
     is_login = False
