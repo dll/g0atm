@@ -6,9 +6,6 @@
 '''
 import pymysql
 import datetime
-'''
-pip3 install pymysql -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-'''
 #创建数据库的链接
 connection = pymysql.connect(host='127.0.0.1',
                              port=3306,
