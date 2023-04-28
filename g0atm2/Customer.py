@@ -13,15 +13,23 @@ from DbUtil import DbUtil
 class Customer:
     __id = '123456'
     __pin = '123456'
+
+	# 顾客通过账号、密码登录ATM系统
     def login(self):
         id=input("请输入账号：");
-        pin=input("请输入密码：");
-        dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
-        connection = dbutil.createConnection();
-        if dbutil.validateID(connection,id,pin):
-            print("欢迎 %s，使用ATM！"% id);
-        else:
-            print("账号或密码错误！");
+		#pin=input("请输入密码：");
+        try:
+            # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
+            dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
+            connection = dbutil.createConnection();
+            # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
+            if dbutil.validateID(connection,id,pin=None):
+                print("欢迎 %s，使用ATM！"% id);
+            else:
+                print("账号或密码错误！");
+        finally:
+            # 关闭连接(良好编程系统)
+            connection.close();
 
 c=Customer()
 c.login()
