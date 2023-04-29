@@ -6,7 +6,7 @@ pipeline {
                 bat 'python -m py_compile g0atm2/src/Customer.py g0atm2/src/DbUtil.py'
             }
         }
-        stage('Test') {
+        stage('UnitTest') {
             steps {
 		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/tests/test_*.py'
             }
@@ -15,7 +15,8 @@ pipeline {
                    junit 'test-reports/results.xml'
                }
             }
-
+        }
+        stage('IntergrateTest') {
             steps{
                 bat 'python -m py_compile g0atm2/tests/intergrateTest.py'
             }
