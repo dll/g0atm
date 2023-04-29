@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'python -m py_compile Customer.py DbUtil.py'
+                bat 'python -m py_compile g0atm2/Customer.py g0atm2/DbUtil.py'
             }
         }
         stage('UnitTest') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/results.xml test_customer.py test_dbutil.py'
+		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/test_customer.py g0atm2/test_dbutil.py'
             }
             post {
                always {
@@ -18,13 +18,13 @@ pipeline {
         }
         stage('IntergrateTest') {
             steps{
-                bat 'python -m py_compile intergrateTest.py'
+                bat 'python -m py_compile g0atm2/intergrateTest.py'
             }
 
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller -F Customer.py -n login_atm.exe'
+                bat 'pyinstaller -F g0atm2/Customer.py -n login_atm.exe'
             }
             post {
                 success {
