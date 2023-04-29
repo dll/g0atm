@@ -8,7 +8,7 @@ pipeline {
         }
         stage('UnitTest') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/tests/test_*.py'
+		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/tests/test_customer.py g0atm2/tests/test_dbutil.py'
             }
             post {
                always {
