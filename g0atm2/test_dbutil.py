@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
-from g0atm2.Customer import Customer
-from g0atm2.DbUtil import DbUtil
+from Customer import Customer
+from DbUtil import DbUtil
 
 
 class Test_DbUtil(unittest.TestCase):

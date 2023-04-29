@@ -7,7 +7,7 @@
 # Original author: dll
 # 
 #######################################################
-from g0atm2.DbUtil import DbUtil
+from DbUtil import DbUtil
 
 class Customer:
     __id = '123456'
