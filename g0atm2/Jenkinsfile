@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller -F g0atm2/Customer.py' -N myatm.exe
+                bat 'pyinstaller -F g0atm2/Customer.py -N myatm.exe'
             }
             post {
                 success {
