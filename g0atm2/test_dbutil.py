@@ -30,4 +30,4 @@ class Test_DbUtil(unittest.TestCase):
         DbUtil.inputPin = Mock()
         DbUtil.inputPin.return_value = "123456"
         cpin = "222222";
-        self.assertEqual(self.dbutil.validatePIN(cpin, DbUtil.inputPin.return_value), 0, "密码不一致")
+        self.assertEqual(self.dbutil.validatePIN(cpin, DbUtil.inputPin.return_value), 0, "密码错误")
