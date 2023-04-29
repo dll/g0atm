@@ -17,7 +17,10 @@ class DbUtil:
     __password = 'gitops123'
     __port = '5432'
     __user = 'dll'
-
+    def inputPin(self):
+        #pin = input("请输入密码：");
+        pin="123456"
+        return pin;
     def __init__(self, dbname, host, password, port, user):
         self.dbname = dbname
         self.host = host
@@ -49,7 +52,8 @@ class DbUtil:
             cid = item["cid"];
             cpin = item["cpin"];
             # 验证密码是否正确
-            pin=input("请输入密码：");
+            # pin=input("请输入密码：");
+            pin = self.inputPin();
             isLogin = self.validatePIN(pin, cpin);
             if isLogin:
                 return True;

@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                bat 'python -m py_compile g0atm2/Customer.py g0atm2/DbUtil.py'
+            }
+        }
+        stage('Test') {
+            steps {
+		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/test_dbutil.py'
+            }
+            post {
+               always {
+                   junit 'test-reports/results.xml'
+               }
+            }
+        }
+        stage('Deliver') {
+            steps {
+                bat 'pyinstaller --onefile g0atm2/Customer.py g0atm2/DbUtil.py' -N myatm.exe
+            }
+            post {
+                success {
+                    archiveArtifacts 'dist/myatm.exe'
+                }
+            }
+        }
+    }
+}
