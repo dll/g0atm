@@ -7,8 +7,7 @@
 # Original author: dll
 # 
 #######################################################
-import psycopg2.extras
-from g0atm2.src.DbUtil import DbUtil
+from g0atm2.DbUtil import DbUtil
 
 class Customer:
     __id = '123456'
