@@ -31,8 +31,10 @@ class Customer:
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
             if dbutil.validateID(connection,id,pin=None):
                 print("欢迎 %s，使用ATM！"% id);
+                return True;
             else:
                 print("账号或密码错误！");
+                return False;
         finally:
             # 关闭连接(良好编程习惯)
             connection.close();
