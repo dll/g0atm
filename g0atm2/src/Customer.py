@@ -8,7 +8,7 @@
 # 
 #######################################################
 import psycopg2.extras
-from DbUtil import DbUtil
+from g0atm2.src.DbUtil import DbUtil
 
 class Customer:
     __id = '123456'

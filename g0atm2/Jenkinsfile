@@ -3,26 +3,30 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'python -m py_compile g0atm2/Customer.py g0atm2/DbUtil.py'
+                bat 'python -m py_compile g0atm2/src/Customer.py g0atm2/src/DbUtil.py'
             }
         }
         stage('Test') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/intergrateTest.py'
+		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm2/tests/test_*.py'
             }
             post {
                always {
                    junit 'test-reports/results.xml'
                }
+
+            steps{
+                bat 'python -m py_compile g0atm2/tests/intergrateTest.py'
             }
+
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller -F g0atm2/Customer.py -n myatm.exe'
+                bat 'pyinstaller -F g0atm2/src/Customer.py -n login_atm.exe'
             }
             post {
                 success {
-                    archiveArtifacts 'dist/myatm.exe'
+                    archiveArtifacts 'dist/login_atm.exe'
                 }
             }
         }

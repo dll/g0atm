@@ -1,8 +1,7 @@
 import unittest
 from unittest.mock import Mock
-import psycopg2.extras
-from Customer import Customer
-from DbUtil import DbUtil
+from g0atm2.src.Customer import Customer
+from g0atm2.src.DbUtil import DbUtil
 
 
 class Test_DbUtil(unittest.TestCase):
