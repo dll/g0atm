@@ -1,7 +1,7 @@
 pipeline {
     agent any
        stages{
-        stage('CodeScan') {
+        stage('SonarQue Analysis') {
             steps {
                 //bat '''
                 //echo "Static Code Scanning"
@@ -14,17 +14,15 @@ pipeline {
                }
             }
         }
-        stage('Quality Analysis Guard') {
+        stage('Quality Gate') {
             steps {
-                //bat '''
-                //echo "pause质检分析门禁"
-                //'''
                 script{
                     timeout(time: 1, unit: 'HOURS'){
+                        waitForQualityGate abortPipeline:true
                         def qg=waitForQualityGate()
-                        echo "状态：${qg.status}"
+                        echo "Status：${qg.status}"
                         if(qg.status=='OK')
-                            error '未达门禁要求！'
+                            error 'Failure To Quality Gate!'
                     }
                 }
             }
@@ -58,6 +56,16 @@ pipeline {
                 success {
                     archiveArtifacts 'dist/login_atm.exe'
                 }
+            }
+        }
+        stage('Deploy Gitee'){
+            steps{
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://localhost:8080')], contextPath: '/atmgitops', war: 'atmgitops.war'
+            }
+        }
+        stage('Execute login_atm.exe'){
+            steps{
+               bat '.\\login_atm.exe'
             }
         }
     }
