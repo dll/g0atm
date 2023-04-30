@@ -1,10 +1,10 @@
 pipeline {
     agent any
-
+       stages{
         stage('CodeScan') {
             steps {
                 bat '''
-                echo "pause静态代码扫描"
+                echo "Static Code Scanning"
                 '''
                 //withSonarQubeEnv('SonarQube'){
                 //    bat '''rd /S /Q target
@@ -14,7 +14,7 @@ pipeline {
                //}
             }
         }
-        stage('质检分析门禁') {
+        stage('Quality Analysis Guard') {
             steps {
                 bat '''
                 echo "pause质检分析门禁"
