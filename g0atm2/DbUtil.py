@@ -46,7 +46,7 @@ class DbUtil:
             item = cursor.fetchone()
             # 判断是否存在此顾客
             if item is None:
-                print("无此顾客账号存在！")
+                print("账号错误！")
                 return False;
             # 从PG数据库atm中获取顾客信息
             cid = item["cid"];
@@ -58,6 +58,7 @@ class DbUtil:
             if isLogin:
                 return True;
             else:
+                print("密码错误！")
                 return False;
 
     # 验证顾客密码的正确性

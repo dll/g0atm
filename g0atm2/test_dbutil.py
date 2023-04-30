@@ -20,6 +20,18 @@ class Test_DbUtil(unittest.TestCase):
         Customer.inputId.return_value = "123457"
         self.assertEqual(self.dbutil.validateID(self.dbutil.createConnection(), Customer.inputId.return_value, None), 0, "账号错误")
 
+    def test_validateID_Less6(self):
+        Customer.inputId = Mock()
+        Customer.inputId.return_value = "12345"
+        self.assertEqual(self.dbutil.validateID(self.dbutil.createConnection(), Customer.inputId.return_value, None), 0,
+                         "账号小于6位数字")
+
+    def test_validateID_More6(self):
+        Customer.inputId = Mock()
+        Customer.inputId.return_value = "1234567"
+        self.assertEqual(self.dbutil.validateID(self.dbutil.createConnection(), Customer.inputId.return_value, None), 0,
+                         "账号大于6位数字")
+
     def test_validatePIN_True(self):
         DbUtil.inputPin = Mock()
         DbUtil.inputPin.return_value = "123456"
@@ -31,3 +43,15 @@ class Test_DbUtil(unittest.TestCase):
         DbUtil.inputPin.return_value = "123456"
         cpin = "222222";
         self.assertEqual(self.dbutil.validatePIN(cpin, DbUtil.inputPin.return_value), 0, "密码错误")
+
+    def test_validatePIN_Less6(self):
+        DbUtil.inputPin = Mock()
+        DbUtil.inputPin.return_value = "23456"
+        cpin = "222222";
+        self.assertEqual(self.dbutil.validatePIN(cpin, DbUtil.inputPin.return_value), 0, "密码小于6位数字")
+
+    def test_validatePIN_More6(self):
+        DbUtil.inputPin = Mock()
+        DbUtil.inputPin.return_value = "1234567"
+        cpin = "222222";
+        self.assertEqual(self.dbutil.validatePIN(cpin, DbUtil.inputPin.return_value), 0, "密码大于6位数字")
