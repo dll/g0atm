@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script{
                     timeout(time: 1, unit: 'HOURS'){
-                        waitForQualityGate abortPipeline:true
+                        //waitForQualityGate abortPipeline:true
                         def qg=waitForQualityGate()
                         echo "Status：${qg.status}"
                         if(qg.status=='OK')
