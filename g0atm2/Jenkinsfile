@@ -3,30 +3,30 @@ pipeline {
        stages{
         stage('CodeScan') {
             steps {
-                bat '''
-                echo "Static Code Scanning"
-                '''
-                //withSonarQubeEnv('SonarQube'){
-                //    bat '''rd /S /Q target
-                //        mkdir target
-                //        sonar-scanner -Dsonar.login=sonar -Dsonar.password=gitops123
-                //        '''
-               //}
+                //bat '''
+                //echo "Static Code Scanning"
+                //'''
+                withSonarQubeEnv('SonarQube'){
+                    bat '''rd /S /Q target
+                        mkdir target
+                        sonar-scanner -Dsonar.login=sonar -Dsonar.password=gitops123
+                        '''
+               }
             }
         }
         stage('Quality Analysis Guard') {
             steps {
-                bat '''
-                echo "pause质检分析门禁"
-                '''
-                //script{
-                //    timeout(time: 1, unit: 'HOURS'){
-                //        def qg=waitForQualityGate()
-                //        echo "状态：${qg.status}"
-                //        if(qg.status=='OK')
-                //            error '未达门禁要求！'
-                //    }
-               // }
+                //bat '''
+                //echo "pause质检分析门禁"
+                //'''
+                script{
+                    timeout(time: 1, unit: 'HOURS'){
+                        def qg=waitForQualityGate()
+                        echo "状态：${qg.status}"
+                        if(qg.status=='OK')
+                            error '未达门禁要求！'
+                    }
+                }
             }
         }
         stage('Build') {
