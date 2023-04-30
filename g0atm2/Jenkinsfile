@@ -1,6 +1,34 @@
 pipeline {
     agent any
-    stages {
+
+        stage('CodeScan') {
+            steps {
+                bat '''
+                echo "pause静态代码扫描"
+                '''
+                //withSonarQubeEnv('SonarQube'){
+                //    bat '''rd /S /Q target
+                //        mkdir target
+                //        sonar-scanner -Dsonar.login=sonar -Dsonar.password=gitops123
+                //        '''
+               //}
+            }
+        }
+        stage('质检分析门禁') {
+            steps {
+                bat '''
+                echo "pause质检分析门禁"
+                '''
+                //script{
+                //    timeout(time: 1, unit: 'HOURS'){
+                //        def qg=waitForQualityGate()
+                //        echo "状态：${qg.status}"
+                //        if(qg.status=='OK')
+                //            error '未达门禁要求！'
+                //    }
+               // }
+            }
+        }
         stage('Build') {
             steps {
                 bat 'python -m py_compile g0atm2/Customer.py g0atm2/DbUtil.py'
