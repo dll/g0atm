@@ -9,7 +9,9 @@ pipeline {
                 withSonarQubeEnv('SonarQube'){
                     bat '''rd /S /Q target
                         mkdir target
-                        sonar-scanner -Dsonar.login=sonar -Dsonar.password=gitops123
+                        sonar-scanner.bat -D"sonar.projectKey=g0atm" -D"sonar.sources=."
+                         -D"sonar.host.url=http://localhost:9000"
+                         -D"sonar.login=sqp_ac0691d3c4c4916ce61f39dc54f4e311781545c5"
                         '''
                }
             }
