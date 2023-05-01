@@ -4,7 +4,7 @@ from Customer import Customer
 from DbUtil import DbUtil
 
 
-class test_DbUtil(unittest.TestCase):
+class test_dbutil(unittest.TestCase):
     dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
 
     def test_create_connection(self):

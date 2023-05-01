@@ -18,6 +18,7 @@ class DbUtil:
     password = 'gitops123'
     port = '5432'
     user = 'dll'
+
     def __init__(self, dbname, host, password, port, user):
         self.dbname = dbname
         self.host = host
@@ -32,7 +33,6 @@ class DbUtil:
         return connection
 
     def input_pin(self):
-        # pin = input("请输入密码：");
         pin = "123456"
         return pin;
 
@@ -53,7 +53,6 @@ class DbUtil:
             # 从PG数据库atm中获取顾客信息
             cpin = item["cpin"];
             # 验证密码是否正确
-            # pin=input("请输入密码：");
             pin = self.input_pin();
             is_login = self.validate_pin(pin, cpin);
             if is_login:
@@ -61,6 +60,7 @@ class DbUtil:
             else:
                 print("密码错误！")
                 return False;
+
     # 验证顾客密码的正确性
     def validate_pin(self, customer_pin, pin):
         if pin != customer_pin:

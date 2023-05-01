@@ -14,15 +14,12 @@ class Customer:
     pin = '123456'
 
     def input_id(self):
-        # id = input("请输入账号：");
         self.id = "123456"
         return self.id;
 
     # 顾客通过账号、密码登录ATM系统
     def login(self):
-        # id=input("请输入账号：");
         self.id = self.input_id();
-        # pin=input("请输入密码：");
         try:
             # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
             dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
