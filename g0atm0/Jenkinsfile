@@ -1,7 +1,7 @@
 pipeline {
     agent any
        stages{
-        stage('SonarQue Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube'){
                     bat '''
