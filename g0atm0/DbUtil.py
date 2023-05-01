@@ -7,17 +7,15 @@
 # Original author: The Administrator
 # 
 #######################################################
-import os
-
 import psycopg2.extras
-
+from pgini import get_pg_pwd
 
 # 数据库实用程序：连接数据库，减少存取转查等连接数据库的重复代码。复用此类
 
 class DbUtil:
     dbname = 'atm'
     host = 'localhost'
-    pwd = 'gitops123'
+    pwd = get_pg_pwd()
     port = '5432'
     user = 'dll'
 

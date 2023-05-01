@@ -3,10 +3,10 @@ import unittest
 from unittest.mock import Mock
 from Customer import Customer
 from DbUtil import DbUtil
-
+from pgini import get_pg_pwd
 
 class test_dbutil(unittest.TestCase):
-    dbutil = DbUtil(dbname='atm', user='dll', pwd='gtiops123', host='localhost', port='5432');
+    dbutil = DbUtil(dbname='atm', user='dll', pwd=get_pg_pwd(), host='localhost', port='5432');
 
     def test_create_connection(self):
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
