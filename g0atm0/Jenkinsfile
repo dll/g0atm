@@ -7,7 +7,7 @@ pipeline {
                     bat '''
                          sonar-scanner.bat -D"sonar.projectKey=g0atm" -D"sonar.sources=."
                          -D"sonar.host.url=http://localhost:9000"
-                         -D"sonar.login=sqp_ac0691d3c4c4916ce61f39dc54f4e311781545c5"
+                         -D"sonar.login=squ_e598b3daa9e60f9918d8dd18c42ad96f600d75be"
                         '''
                }
             }
