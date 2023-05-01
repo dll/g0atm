@@ -11,16 +11,13 @@ import psycopg2.extras
 
 
 # 数据库实用程序：连接数据库，减少存取转查等连接数据库的重复代码。复用此类
+
 class DbUtil:
-    __dbname = 'atm'
-    __host = 'localhost'
-    __password = 'gitops123'
-    __port = '5432'
-    __user = 'dll'
-    def input_pin(self):
-        # pin = input("请输入密码：");
-        pin = "123456"
-        return pin;
+    dbname = 'atm'
+    host = 'localhost'
+    password = 'gitops123'
+    port = '5432'
+    user = 'dll'
     def __init__(self, dbname, host, password, port, user):
         self.dbname = dbname
         self.host = host
@@ -33,6 +30,11 @@ class DbUtil:
         connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.password, host=self.host,
                                       port=self.port)
         return connection
+
+    def input_pin(self):
+        # pin = input("请输入密码：");
+        pin = "123456"
+        return pin;
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
     def validate_id(self, connection, id):
@@ -49,21 +51,19 @@ class DbUtil:
                 print("账号错误！")
                 return False;
             # 从PG数据库atm中获取顾客信息
-            cid = item["cid"];
             cpin = item["cpin"];
             # 验证密码是否正确
             # pin=input("请输入密码：");
             pin = self.input_pin();
-            isLogin = self.validate_pin(pin, cpin);
-            if isLogin:
+            is_login = self.validate_pin(pin, cpin);
+            if is_login:
                 return True;
             else:
                 print("密码错误！")
                 return False;
-
     # 验证顾客密码的正确性
-    def validate_pin(self, cpin, pin):
-        if pin != cpin:
+    def validate_pin(self, customer_pin, pin):
+        if pin != customer_pin:
             return False;
         else:
             return True;

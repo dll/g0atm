@@ -10,18 +10,18 @@
 from DbUtil import DbUtil
 
 class Customer:
-    __id = '123456'
-    __pin = '123456'
+    id = '123456'
+    pin = '123456'
 
     def input_id(self):
         # id = input("请输入账号：");
-        id = "123456"
-        return id;
+        self.id = "123456"
+        return self.id;
 
     # 顾客通过账号、密码登录ATM系统
     def login(self):
         # id=input("请输入账号：");
-        id = self.input_id();
+        self.id = self.input_id();
         # pin=input("请输入密码：");
         try:
             # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
@@ -29,7 +29,7 @@ class Customer:
             connection = dbutil.create_connection();
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
             if dbutil.validate_id(connection, id):
-                print("登录成功！欢迎 %s，使用ATM！"% id);
+                print("登录成功！欢迎 %s，使用ATM！"% self.id);
                 return True;
             else:
                 print("登录失败！账号或密码错误！");
