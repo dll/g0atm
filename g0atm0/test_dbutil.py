@@ -6,7 +6,10 @@ from dbutil import DbUtil
 from pgini import get_pg_pwd
 
 class test_dbutil(unittest.TestCase):
-    dbutil = DbUtil(dbname='atm', user='dll', pwd=get_pg_pwd(), host='localhost', port='5432');
+
+    dbutil=None;
+    def setUp(self):
+        self.dbutil = DbUtil(dbname='atm', user='dll', pwd=get_pg_pwd(), host='localhost', port='5432');
 
     def test_create_connection(self):
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
