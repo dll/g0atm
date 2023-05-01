@@ -3,7 +3,7 @@ from unittest.mock import Mock
 from customer import Customer
 from dbutil import DbUtil
 
-class test_customer(unittest.TestCase):
+class TestCustomer(unittest.TestCase):
     def test_login_true(self):
         customer = Customer()
         Customer.input_id = Mock()

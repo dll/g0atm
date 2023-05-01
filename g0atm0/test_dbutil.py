@@ -5,7 +5,7 @@ from customer import Customer
 from dbutil import DbUtil
 from pgini import get_pg_pwd
 
-class test_dbutil(unittest.TestCase):
+class TestDbUtil(unittest.TestCase):
 
     dbutil=None;
     def setUp(self):
@@ -17,6 +17,14 @@ class test_dbutil(unittest.TestCase):
     def test_validate_id_true(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123456"
+        DbUtil.input_pin = Mock()
+        DbUtil.input_pin.return_value = "123456"
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), True, "账号匹配")
+    def test_validate_id_pin(self):
+        Customer.input_id = Mock()
+        Customer.input_id.return_value = "111111"
+        DbUtil.input_pin = Mock()
+        DbUtil.input_pin.return_value = "222222"
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), True, "账号匹配")
 
     def test_validate_id_false(self):

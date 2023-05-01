@@ -4,7 +4,7 @@ import unittest
 import test_customer
 import test_dbutil
 
-class IntergrateTest:
+class TestIntergrate:
 
     def login_atm_itest(self):
         # 将测试用例添加到测试集合
@@ -19,5 +19,5 @@ class IntergrateTest:
         runner = unittest.TextTestRunner()
         runner.run(suite)
 
-itest = IntergrateTest()
+itest = TestIntergrate()
 itest.login_atm_itest()
