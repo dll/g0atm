@@ -6,18 +6,18 @@ import test_dbutil
 
 class IntergrateTest:
 
-    def loginatm_itest(self):
+    def login_atm_itest(self):
         # 将测试用例添加到测试集合
         suite = unittest.TestSuite()
         # 测试登录成功
-        suite.addTest(test_dbutil.test_dbutil("test_createConnection"))
-        suite.addTest(test_dbutil.test_dbutil("test_validateID_True"))
-        suite.addTest(test_dbutil.test_dbutil("test_validatePIN_True"))
-        suite.addTest(test_customer.Test_Customer("test_login_True"))
+        suite.addTest(test_dbutil.test_dbutil("test_create_connection"))
+        suite.addTest(test_dbutil.test_dbutil("test_validate_id_true"))
+        suite.addTest(test_dbutil.test_dbutil("test_validate_pin_true"))
+        suite.addTest(test_customer.test_customer("test_login_true"))
 
         # 运行测试用例
         runner = unittest.TextTestRunner()
         runner.run(suite)
 
 itest = IntergrateTest()
-itest.loginatm_itest()
+itest.login_atm_itest()
