@@ -49,13 +49,12 @@ class DbUtil:
                 print("账号错误！")
                 return False;
             # 从PG数据库atm中获取顾客信息
-            cid = item["cid"];
             cpin = item["cpin"];
             # 验证密码是否正确
             # pin=input("请输入密码：");
             pin = self.input_pin();
-            isLogin = self.validate_pin(pin, cpin);
-            if isLogin:
+            is_login = self.validate_pin(pin, cpin);
+            if is_login:
                 return True;
             else:
                 print("密码错误！")

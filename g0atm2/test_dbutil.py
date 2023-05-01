@@ -4,7 +4,7 @@ from Customer import Customer
 from DbUtil import DbUtil
 
 
-class Test_DbUtil(unittest.TestCase):
+class test_DbUtil(unittest.TestCase):
     dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
 
     def test_create_connection(self):
@@ -13,23 +13,23 @@ class Test_DbUtil(unittest.TestCase):
     def test_validate_id_true(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123456"
-        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value, None), 1, "账号匹配")
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), 1, "账号匹配")
 
     def test_validate_id_false(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123457"
-        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value, None), 0, "账号错误")
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), 0, "账号错误")
 
     def test_validate_id_less6(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "12345"
-        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value, None), 0,
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), 0,
                          "账号小于6位数字")
 
     def test_validate_id_more6(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "1234567"
-        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value, None), 0,
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), 0,
                          "账号大于6位数字")
 
     def test_validate_pin_true(self):
