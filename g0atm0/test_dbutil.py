@@ -1,8 +1,8 @@
 import os
 import unittest
 from unittest.mock import Mock
-from Customer import Customer
-from DbUtil import DbUtil
+from customer import Customer
+from dbutil import DbUtil
 from pgini import get_pg_pwd
 
 class test_dbutil(unittest.TestCase):
