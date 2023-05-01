@@ -54,7 +54,7 @@ class DbUtil:
             cpin = item["cpin"];
             # 验证密码是否正确
             pin = self.input_pin();
-            is_login = self.validate_pin(pin, cpin);
+            is_login = self.validate_pin(cpin, pin);
             if is_login:
                 return True;
             else:
@@ -62,8 +62,8 @@ class DbUtil:
                 return False;
 
     # 验证顾客密码的正确性
-    def validate_pin(self, customer_pin, pin):
-        if pin != customer_pin:
+    def validate_pin(self, cpin, pin):
+        if pin != cpin:
             return False;
         else:
             return True;
