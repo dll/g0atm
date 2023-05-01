@@ -1,14 +1,42 @@
 pipeline {
     agent any
-    stages {
-        stage('Build') {
+       stages{
+        stage('SonarQue Analysis') {
             steps {
-                bat 'python -m py_compile g0atm0/login_atm.py'
+                //bat '''
+                //echo "Static Code Scanning"
+                //'''
+                withSonarQubeEnv('SonarQube'){
+                    bat '''rd /S /Q target
+                        mkdir target
+                        sonar-scanner.bat -D"sonar.projectKey=g0atm" -D"sonar.sources=."
+                         -D"sonar.host.url=http://localhost:9000"
+                         -D"sonar.login=sqp_ac0691d3c4c4916ce61f39dc54f4e311781545c5"
+                        '''
+               }
             }
         }
-        stage('Test') {
+        stage('Quality Gate') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_login_atm.py'
+                script{
+                    timeout(time: 1, unit: 'HOURS'){
+                        //waitForQualityGate abortPipeline:true
+                        def qg=waitForQualityGate()
+                        echo "Status：${qg.status}"
+                        if(qg.status=='OK')
+                            error 'Failure To Quality Gate!'
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'python -m py_compile g0atm0/Customer.py g0atm0/DbUtil.py'
+            }
+        }
+        stage('UnitTest') {
+            steps {
+		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
             }
             post {
                always {
@@ -16,14 +44,30 @@ pipeline {
                }
             }
         }
+        stage('IntergrateTest') {
+            steps{
+                bat 'python -m py_compile g0atm0/intergrateTest.py'
+            }
+
+        }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller --onefile g0atm0/login_atm.py'
+                bat 'pyinstaller -F g0atm0/Customer.py -n login_atm.exe'
             }
             post {
                 success {
                     archiveArtifacts 'dist/login_atm.exe'
                 }
+            }
+        }
+        stage('Deploy Gitee'){
+            steps{
+                echo 'release gitee'
+            }
+        }
+        stage('Execute login_atm.exe'){
+            steps{
+               bat '.\\login_atm.exe'
             }
         }
     }
