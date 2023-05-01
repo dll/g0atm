@@ -7,6 +7,8 @@
 # Original author: The Administrator
 # 
 #######################################################
+import os
+
 import psycopg2.extras
 
 
@@ -15,7 +17,7 @@ import psycopg2.extras
 class DbUtil:
     dbname = 'atm'
     host = 'localhost'
-    password = 'gitops123'
+    password = os.getenv("password")  # Compliant
     port = '5432'
     user = 'dll'
 

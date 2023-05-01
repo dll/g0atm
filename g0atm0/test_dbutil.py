@@ -1,3 +1,4 @@
+import os
 import unittest
 from unittest.mock import Mock
 from Customer import Customer
@@ -5,7 +6,8 @@ from DbUtil import DbUtil
 
 
 class test_dbutil(unittest.TestCase):
-    dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
+    password = os.getenv("password")  # Compliant
+    dbutil = DbUtil(dbname='atm', user='dll', password=password, host='localhost', port='5432');
 
     def test_create_connection(self):
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
