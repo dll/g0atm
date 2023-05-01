@@ -28,7 +28,7 @@ class Customer:
             dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
             connection = dbutil.create_connection();
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
-            if dbutil.validate_id(connection, id, pin=None):
+            if dbutil.validate_id(connection, id):
                 print("登录成功！欢迎 %s，使用ATM！"% id);
                 return True;
             else:
