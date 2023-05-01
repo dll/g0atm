@@ -35,7 +35,7 @@ class DbUtil:
         return connection
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
-    def validateID(self, connection, id, pin):
+    def validateId(self, connection, id, pin):
         # 由连接connection创建游标cursor
         with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
             # 根据顾客账号查出顾客信息
@@ -54,7 +54,7 @@ class DbUtil:
             # 验证密码是否正确
             # pin=input("请输入密码：");
             pin = self.inputPin();
-            isLogin = self.validatePIN(pin, cpin);
+            isLogin = self.validatePin(pin, cpin);
             if isLogin:
                 return True;
             else:
@@ -62,7 +62,7 @@ class DbUtil:
                 return False;
 
     # 验证顾客密码的正确性
-    def validatePIN(self, cpin, pin):
+    def validatePin(self, cpin, pin):
         if pin != cpin:
             return False;
         else:
