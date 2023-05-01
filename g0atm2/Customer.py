@@ -13,22 +13,22 @@ class Customer:
     __id = '123456'
     __pin = '123456'
 
-    def inputId(self):
-        #id = input("请输入账号：");
-        id="123456"
+    def input_id(self):
+        # id = input("请输入账号：");
+        id = "123456"
         return id;
 
     # 顾客通过账号、密码登录ATM系统
     def login(self):
-        #id=input("请输入账号：");
-        id = self.inputId();
-        #pin=input("请输入密码：");
+        # id=input("请输入账号：");
+        id = self.input_id();
+        # pin=input("请输入密码：");
         try:
             # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
             dbutil = DbUtil(dbname='atm', user='dll', password='gitops123', host='localhost', port='5432');
-            connection = dbutil.createConnection();
+            connection = dbutil.create_connection();
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
-            if dbutil.validateID(connection,id,pin=None):
+            if dbutil.validate_id(connection, id, pin=None):
                 print("登录成功！欢迎 %s，使用ATM！"% id);
                 return True;
             else:
@@ -38,5 +38,5 @@ class Customer:
             # 关闭连接(良好编程习惯)
             connection.close();
 
-c=Customer()
-c.login()
+c = Customer();
+c.login();

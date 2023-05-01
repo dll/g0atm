@@ -17,9 +17,9 @@ class DbUtil:
     __password = 'gitops123'
     __port = '5432'
     __user = 'dll'
-    def inputPin(self):
-        #pin = input("请输入密码：");
-        pin="123456"
+    def input_pin(self):
+        # pin = input("请输入密码：");
+        pin = "123456"
         return pin;
     def __init__(self, dbname, host, password, port, user):
         self.dbname = dbname
@@ -29,13 +29,13 @@ class DbUtil:
         self.user = user
 
     # 创建应用与数据库之间的连接
-    def createConnection(self):
+    def create_connection(self):
         connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.password, host=self.host,
                                       port=self.port)
         return connection
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
-    def validateID(self, connection, id, pin):
+    def validate_id(self, connection, id):
         # 由连接connection创建游标cursor
         with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
             # 根据顾客账号查出顾客信息
@@ -53,8 +53,8 @@ class DbUtil:
             cpin = item["cpin"];
             # 验证密码是否正确
             # pin=input("请输入密码：");
-            pin = self.inputPin();
-            isLogin = self.validatePIN(pin, cpin);
+            pin = self.input_pin();
+            isLogin = self.validate_pin(pin, cpin);
             if isLogin:
                 return True;
             else:
@@ -62,7 +62,7 @@ class DbUtil:
                 return False;
 
     # 验证顾客密码的正确性
-    def validatePIN(self, cpin, pin):
+    def validate_pin(self, cpin, pin):
         if pin != cpin:
             return False;
         else:
