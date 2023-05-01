@@ -17,20 +17,20 @@ import psycopg2.extras
 class DbUtil:
     dbname = 'atm'
     host = 'localhost'
-    password = os.getenv("password")  # Compliant
+    pwd = 'gitops123'
     port = '5432'
     user = 'dll'
 
-    def __init__(self, dbname, host, password, port, user):
+    def __init__(self, dbname, host, pwd, port, user):
         self.dbname = dbname
         self.host = host
-        self.password = password
+        self.pwd = pwd
         self.port = port
         self.user = user
 
     # 创建应用与数据库之间的连接
     def create_connection(self):
-        connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.password, host=self.host,
+        connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.pwd, host=self.host,
                                       port=self.port)
         return connection
 

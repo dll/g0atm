@@ -3,13 +3,9 @@ pipeline {
        stages{
         stage('SonarQue Analysis') {
             steps {
-                //bat '''
-                //echo "Static Code Scanning"
-                //'''
                 withSonarQubeEnv('SonarQube'){
-                    bat '''rd /S /Q target
-                        mkdir target
-                        sonar-scanner.bat -D"sonar.projectKey=g0atm" -D"sonar.sources=."
+                    bat '''
+                         sonar-scanner.bat -D"sonar.projectKey=g0atm" -D"sonar.sources=."
                          -D"sonar.host.url=http://localhost:9000"
                          -D"sonar.login=sqp_ac0691d3c4c4916ce61f39dc54f4e311781545c5"
                         '''
@@ -22,10 +18,6 @@ pipeline {
                     sleep(10)
                     timeout(time: 5, unit: 'MINUTES'){
                         waitForQualityGate abortPipeline:true
-                        //def qg=waitForQualityGate()
-                        //echo "Status：${qg.status}"
-                        //if(qg.status=='OK')
-                        //    error 'Failure To Quality Gate!'
                     }
                 }
             }
@@ -68,7 +60,7 @@ pipeline {
         }
         stage('Execute login_atm.exe'){
             steps{
-               bat '.\\login_atm.exe'
+               bat 'dist/login_atm.exe'
             }
         }
     }

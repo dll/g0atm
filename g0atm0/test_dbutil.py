@@ -6,8 +6,7 @@ from DbUtil import DbUtil
 
 
 class test_dbutil(unittest.TestCase):
-    password = os.getenv("password")  # Compliant
-    dbutil = DbUtil(dbname='atm', user='dll', password=password, host='localhost', port='5432');
+    dbutil = DbUtil(dbname='atm', user='dll', pwd='gtiops123', host='localhost', port='5432');
 
     def test_create_connection(self):
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
@@ -15,7 +14,7 @@ class test_dbutil(unittest.TestCase):
     def test_validate_id_true(self):
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123456"
-        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), False, "账号匹配")
+        self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), True, "账号匹配")
 
     def test_validate_id_false(self):
         Customer.input_id = Mock()

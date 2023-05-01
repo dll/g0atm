@@ -24,8 +24,7 @@ class Customer:
         tmp_id = self.input_id();
         try:
             # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
-            password = os.getenv("password")  # Compliant
-            dbutil = DbUtil(dbname='atm', user='dll', password=password, host='localhost', port='5432');
+            dbutil = DbUtil(dbname='atm', user='dll', pwd='gitops123', host='localhost', port='5432');
             connection = dbutil.create_connection();
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
             if dbutil.validate_id(connection, tmp_id):
