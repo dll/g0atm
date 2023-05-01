@@ -15,7 +15,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script{
-                    sleep(10)
+                    sleep(30)
                     timeout(time: 10, unit: 'MINUTES'){
                         //waitForQualityGate abortPipeline:true
                         def qg = waitForQualityGate()
@@ -33,11 +33,11 @@ pipeline {
         }
         stage('UnitTest') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/results.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
+		        bat 'py.test --verbose --junit-xml test-reports/unittests.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
             }
             post {
                always {
-                   junit 'test-reports/results.xml'
+                   junit 'test-reports/unittests.xml'
                }
             }
         }
