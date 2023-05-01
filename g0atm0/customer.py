@@ -16,7 +16,7 @@ class Customer:
     pin = '123456'
 
     def input_id(self):
-        tmp_id = "123456"
+        tmp_id =  "123456"
         return tmp_id;
 
     # 顾客通过账号、密码登录ATM系统
