@@ -3,15 +3,17 @@ import unittest
 from unittest.mock import Mock
 from customer import Customer
 from dbutil import DbUtil
-from pgini import get_pg_pwd
+from pgini import  PgIni
+
 
 class TestDbUtil(unittest.TestCase):
 
-    dbutil=None;
+    dbutil=None
     def setUp(self):
-        self.dbutil = DbUtil(dbname='atm', user='dll', pwd=get_pg_pwd(), host='localhost', port='5432');
+        self.dbutil = DbUtil()
 
     def test_create_connection(self):
+        pgini = PgIni()
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
 
     def test_validate_id_true(self):
