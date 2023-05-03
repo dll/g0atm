@@ -36,8 +36,8 @@ class Customer:
             # 关闭连接(良好编程习惯)
             if connection:
                 connection.close()
-            else:
-                return
+            # else:
+            #    return # bug
 
 c = Customer()
 c.login()
