@@ -9,7 +9,6 @@
 #######################################################
 
 from dbutil import DbUtil
-from pgini import get_pg_pwd
 
 class Customer:
     id = '123456'
@@ -17,25 +16,28 @@ class Customer:
 
     def input_id(self):
         tmp_id =  "123456"
-        return tmp_id;
+        return tmp_id
 
     # 顾客通过账号、密码登录ATM系统
     def login(self):
-        tmp_id = self.input_id();
+        tmp_id = self.input_id()
         try:
             # 调用DbUtil的createConnection方法创建连接对象connection，并返回connection
-            dbutil = DbUtil(dbname='atm', user='dll', pwd=get_pg_pwd(), host='localhost', port='5432');
-            connection = dbutil.create_connection();
+            dbutil = DbUtil()
+            connection = dbutil.create_connection()
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
             if dbutil.validate_id(connection, tmp_id):
-                print("登录成功！欢迎 %s，使用ATM！"% self.id);
-                return True;
+                print("登录成功！欢迎 %s，使用ATM！"% self.id)
+                return True
             else:
-                print("登录失败！账号或密码错误！");
-                return False;
+                print("登录失败！账号或密码错误！")
+                return False
         finally:
             # 关闭连接(良好编程习惯)
-            connection.close();
+            if connection:
+                connection.close()
+            else:
+                return
 
-c = Customer();
-c.login();
+c = Customer()
+c.login()

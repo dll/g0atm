@@ -8,33 +8,22 @@
 # 
 #######################################################
 import psycopg2.extras
-from pgini import get_pg_pwd
+from pgini import PgIni
 
 # 数据库实用程序：连接数据库，减少存取转查等连接数据库的重复代码。复用此类
 
 class DbUtil:
-    dbname = 'atm'
-    host = 'localhost'
-    pwd = get_pg_pwd()
-    port = '5432'
-    user = 'dll'
-
-    def __init__(self, dbname, host, pwd, port, user):
-        self.dbname = dbname
-        self.host = host
-        self.pwd = pwd
-        self.port = port
-        self.user = user
 
     # 创建应用与数据库之间的连接
     def create_connection(self):
-        connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.pwd, host=self.host,
-                                      port=self.port)
+        pgini = PgIni()
+        connection = psycopg2.connect(dbname=pgini.get_pg_dbname(),user=pgini.get_pg_user(),password=pgini.get_pg_pwd(),
+                                      host=pgini.get_pg_host(),port=pgini.get_pg_port())
         return connection
 
     def input_pin(self):
         pin = "123456"
-        return pin;
+        return pin
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
     def validate_id(self, connection, id):
@@ -49,21 +38,21 @@ class DbUtil:
             # 判断是否存在此顾客
             if item is None:
                 print("账号错误！")
-                return False;
+                return False
             # 从PG数据库atm中获取顾客信息
-            cpin = item["cpin"];
+            cpin = item["cpin"]
             # 验证密码是否正确
-            pin = self.input_pin();
-            is_login = self.validate_pin(cpin, pin);
+            pin = self.input_pin()
+            is_login = self.validate_pin(cpin, pin)
             if is_login:
-                return True;
+                return True
             else:
                 print("密码错误！")
-                return False;
+                return False
 
     # 验证顾客密码的正确性
     def validate_pin(self, cpin, pin):
         if pin != cpin:
-            return False;
+            return False
         else:
-            return True;
+            return True
