@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller -F g0atm0/customer.py g0atm0/dbutil.py g0atm0/pgini.py --hidden-import=psycopg2  -n login_atm.exe'
+                bat 'pyinstaller -F -p C:\\Users\\dll\\Desktop\\2023\\IS\\g0atm\\venv\\Lib\\site-packages g0atm0/customer.py -n login_atm.exe'
             }
             post {
                 success {
