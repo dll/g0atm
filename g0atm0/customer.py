@@ -15,7 +15,10 @@ class Customer:
     pin = '123456'
 
     def input_id(self):
-        tmp_id =  "123456"
+        if __debug__:
+            tmp_id =  "123456"
+        else:
+            tmp_id=input("请输入账号：")
         return tmp_id
 
     # 顾客通过账号、密码登录ATM系统
@@ -27,6 +30,7 @@ class Customer:
             connection = dbutil.create_connection()
             # 根据连接实用工具类dbutil的方法validateID，返回不同登录结果
             if dbutil.validate_id(connection, tmp_id):
+                self.id =tmp_id
                 print("登录成功！欢迎 %s，使用ATM！"% self.id)
                 return True
             else:

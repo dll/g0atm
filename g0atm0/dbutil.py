@@ -17,12 +17,15 @@ class DbUtil:
     # 创建应用与数据库之间的连接
     def create_connection(self):
         pgini = PgIni()
-        connection = psycopg2.connect(database=pgini.get_pg_database(), user=pgini.get_pg_user(), password=pgini.get_pg_pwd(),
+        connection = psycopg2.connect(user=pgini.get_pg_user(), password=pgini.get_pg_pwd(),database=pgini.get_pg_database(),
                                       host=pgini.get_pg_host(), port=pgini.get_pg_port())
         return connection
 
     def input_pin(self):
-        pin = "123456"
+        if __debug__:
+            pin = "123456"
+        else:
+            pin=input("请输入密码：")
         return pin
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
