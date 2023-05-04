@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller -F -p venv/Lib/site-packages g0atm0/customer.py -n login_atm.exe'
+                bat 'pyinstaller login_atm.spec'
             }
             post {
                 success {
