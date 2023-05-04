@@ -24,11 +24,9 @@ class DbUtil:
 
     def input_pin(self):
         if __debug__:
-            pin = input("请输入密码：")
-            # pin = "123456"
-        else:
             pin = "123456"
-            # pin=input("请输入密码：")
+        else:
+            pin=input("请输入密码：")
         return pin
 
     # 验证顾客账号和密码，先验证账号，再通过调用validatePIN函数验证密码
