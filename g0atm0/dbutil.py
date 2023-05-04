@@ -7,6 +7,7 @@
 # Original author: The Administrator
 # 
 #######################################################
+import psycopg2
 import psycopg2.extras
 from pgini import PgIni
 
@@ -17,8 +18,8 @@ class DbUtil:
     # 创建应用与数据库之间的连接
     def create_connection(self):
         pgini = PgIni()
-        connection = psycopg2.connect(user=pgini.get_pg_user(), password=pgini.get_pg_pwd(),
-                                      host=pgini.get_pg_host(), port=pgini.get_pg_port(),database=pgini.get_pg_dbname())
+        connection = psycopg2.connect(database=pgini.get_pg_database(), user=pgini.get_pg_user(), password=pgini.get_pg_pwd(),
+                                      host=pgini.get_pg_host(), port=pgini.get_pg_port())
         return connection
 
     def input_pin(self):
