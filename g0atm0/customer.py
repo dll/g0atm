@@ -16,9 +16,11 @@ class Customer:
 
     def input_id(self):
         if __debug__:
-            tmp_id =  "123456"
+            tmp_id = input("请输入账号：")
+            # tmp_id =  "123456"
         else:
-            tmp_id=input("请输入账号：")
+            # tmp_id=input("请输入账号：")
+            tmp_id = "123456"
         return tmp_id
 
     # 顾客通过账号、密码登录ATM系统
