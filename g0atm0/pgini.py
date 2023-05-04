@@ -19,5 +19,5 @@ class PgIni:
     def get_pg_pwd(self):
         return os.getenv("password")
 
-    def get_pg_dbname(self):
-        return os.getenv("dbname")
+    def get_pg_database(self):
+        return os.getenv("database")
