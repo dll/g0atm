@@ -7,7 +7,7 @@ import test_dbutil
 
 class TestIntergrate:
 
-    def login_atm_itest(self):
+    def test_login_atm(self):
         # 将测试用例添加到测试集合
         suite = unittest.TestSuite()
         # 测试登录成功
@@ -21,4 +21,4 @@ class TestIntergrate:
         runner.run(suite)
 
 itest = TestIntergrate()
-itest.login_atm_itest()
+itest.test_login_atm()

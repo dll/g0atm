@@ -31,9 +31,9 @@ pipeline {
                 bat 'python  -d -m py_compile g0atm0/Customer.py g0atm0/DbUtil.py'
             }
         }
-        stage('UnitTest') {
+        stage('Unit Test') {
             steps {
-		        bat 'py.test --verbose --junit-xml test-reports/unittests.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
+		        bat 'pytest --verbose --junit-xml test-reports/unittests.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
             }
             post {
                always {
@@ -41,7 +41,7 @@ pipeline {
                }
             }
         }
-        stage('IntergrateTest') {
+        stage('Intergrate Test') {
             steps{
                 bat 'python -m py_compile g0atm0/intergrateTest.py'
             }
