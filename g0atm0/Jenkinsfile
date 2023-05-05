@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Intergrate Test') {
             steps{
-                bat 'python -m py_compile g0atm0/intergrateTest.py'
+                bat 'python -m py_compile g0atm0/test_intergrate.py'
             }
              post {
                always {
