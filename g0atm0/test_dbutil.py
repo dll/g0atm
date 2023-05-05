@@ -12,8 +12,6 @@ class TestDbUtil(unittest.TestCase):
         self.dbutil = DbUtil()
 
     def test_create_connection(self):
-        # DbUtil.create_connection = Mock()
-        # DbUtil.create_connection.return_value = self.dbutil.create_connection()
         self.assertIsNotNone(self.dbutil.create_connection(), "测试数据库链接，OK")
 
     def test_validate_id_true(self):

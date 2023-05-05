@@ -43,11 +43,11 @@ pipeline {
         }
         stage('Intergrate Test') {
             steps{
-                bat 'python -m py_compile g0atm0/test_intergrate.py'
+                bat 'coverage html -d coverage-reports'
             }
              post {
                always {
-                   junit 'coverage-reports/coverage-login.xml'
+                   explorer 'coverage-reports/index.html'
                }
             }
 
