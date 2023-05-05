@@ -50,7 +50,7 @@ pipeline {
             }
              post {
                always {
-                   explorer 'coverage-reports/index.html'
+                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                }
             }
 
