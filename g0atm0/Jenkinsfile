@@ -37,13 +37,18 @@ pipeline {
             }
             post {
                always {
-                   junit 'coverage-reports/coverage.xml'
+                   junit 'xunit-reports/xunit-result-login.xml'
                }
             }
         }
         stage('IntergrateTest') {
             steps{
                 bat 'python -m py_compile g0atm0/intergrateTest.py'
+            }
+             post {
+               always {
+                   junit 'coverage-reports/coverage-login.xml'
+               }
             }
 
         }
