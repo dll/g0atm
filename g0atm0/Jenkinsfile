@@ -33,24 +33,24 @@ pipeline {
         }
         stage('Unit Test') {
             steps {
-		        bat 'pytest --verbose --junit-xml xunit-reports/xunit-result-login.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
+		        bat 'pytest --verbose --junit-xml g0atm0/xunit-reports/xunit-result-login.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
             }
             post {
                always {
-                   junit 'xunit-reports/xunit-result-login.xml'
+                   junit 'g0atm0/xunit-reports/xunit-result-login.xml'
                }
             }
         }
         stage('Intergrate Test') {
             steps{
                 bat '''
-                    coverage run test_dbutil.py test_customer.py test_intergrate.py
-                    coverage html -d coverage-reports
+                    coverage run g0atm0/test_dbutil.py g0atm0/test_customer.py g0atm0/test_intergrate.py
+                    coverage html -d g0atm0/coverage-reports
                     '''
             }
              post {
                always {
-                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'g0atm0/coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                }
             }
 
