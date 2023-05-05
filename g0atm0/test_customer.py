@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import unittest
 from unittest.mock import Mock
 from customer import Customer

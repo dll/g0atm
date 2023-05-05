@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import unittest
 
 # 加载测试用例

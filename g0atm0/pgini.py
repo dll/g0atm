@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # pip install python_dotenv
 import os
 from dotenv import find_dotenv, load_dotenv
