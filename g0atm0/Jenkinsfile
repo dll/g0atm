@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Unit Test') {
             steps {
-		        bat 'pytest --verbose --junit-xml test-reports/unittests.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
+		        bat 'pytest --verbose --junit-xml xunit-reports/xunit-result-login.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
             }
             post {
                always {
