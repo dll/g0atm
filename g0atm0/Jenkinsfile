@@ -43,7 +43,10 @@ pipeline {
         }
         stage('Intergrate Test') {
             steps{
-                bat 'coverage html -d coverage-reports'
+                bat '''
+                    coverage run test_dbutil.py test_customer.py test_intergrate.py
+                    coverage html -d coverage-reports
+                    '''
             }
              post {
                always {
