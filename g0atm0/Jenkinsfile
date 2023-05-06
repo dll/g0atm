@@ -1,6 +1,12 @@
 pipeline {
     agent any
-       stages{
+    environment {
+        withGroovy(jdk: 'jdk17', tool: 'groovy4011') {
+            System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+        }
+    }
+
+    stages{
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube'){
@@ -54,9 +60,6 @@ pipeline {
                 }
             }
              post {
-                withGroovy(jdk: 'jdk17', tool: 'groovy4011') {
-                    System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
-                }
                always {
                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'g0atm0/coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                }
