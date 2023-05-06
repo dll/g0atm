@@ -44,7 +44,9 @@ pipeline {
         stage('Intergrate Test') {
             steps{
                 bat '''
-                    coverage run g0atm0/test_dbutil.py g0atm0/test_customer.py g0atm0/test_intergrate.py
+                    coverage run g0atm0/test_dbutil.py
+                    coverage run g0atm0/test_customer.py
+                    coverage run g0atm0/test_intergrate.py
                     coverage html -d g0atm0/coverage-reports
                     '''
             }
