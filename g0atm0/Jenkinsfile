@@ -49,6 +49,9 @@ pipeline {
                     coverage run g0atm0/test_intergrate.py
                     coverage html -d g0atm0/coverage-reports
                     '''
+                withGroovy(jdk: 'jdk17', tool: 'groovy4011') {
+                    System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+                }
             }
              post {
                always {
