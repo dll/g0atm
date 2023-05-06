@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    withGroovy(jdk: 'jdk17', tool: 'groovy4011') {
-        System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
-    }
-
     stages{
         stage('SonarQube Analysis') {
             steps {
