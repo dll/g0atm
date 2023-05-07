@@ -8,7 +8,7 @@ a = Analysis(
     ['./g0atm0/customer.py'],
     pathex=['./venv/Lib/site-packages','./g0atm0/customer.py','./g0atm0/dbutil.py','./g0atm0/pgini.py'],
     binaries=[],
-    datas=[('./g0atm0/pg.env','./g0atm0/pg.env')],
+    datas=[('./g0atm0/pg.env'],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
