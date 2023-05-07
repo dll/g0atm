@@ -29,7 +29,6 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'python  -d -m py_compile g0atm0/Customer.py g0atm0/DbUtil.py'
-                //python  -d -m py_compile g0atm0/Customer.py g0atm0/DbUtil.py
             }
         }
         stage('Unit Test') {

@@ -45,3 +45,5 @@ class TestIntergrate:
 
 itest = TestIntergrate()
 itest.test_login_atm()
+itest.test_login_atm_id_fail()
+itest.test_login_atm_pin_fail()
