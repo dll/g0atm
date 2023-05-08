@@ -28,26 +28,26 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'python -d -m py_compile g0atm0/Customer.py g0atm0/DbUtil.py'
+                bat 'python -d -m py_compile g0atm0/views/Customer.py g0atm0/models/DbUtil.py'
             }
         }
         stage('Unit Test') {
             steps {
-		        bat 'pytest --verbose --junit-xml g0atm0/xunit-reports/xunit-result-login.xml g0atm0/test_customer.py g0atm0/test_dbutil.py'
+		        bat 'pytest --verbose --junit-xml g0atm0/tests/xunit-reports/xunit-result.xml g0atm0/tests/test_customer.py g0atm0//tests/test_dbutil.py'
             }
             post {
                always {
-                   junit 'g0atm0/xunit-reports/xunit-result-login.xml'
+                   junit 'g0atm0/tests/xunit-reports/xunit-result.xml'
                }
             }
         }
         stage('Intergrate Test') {
             steps{
                 bat '''
-                    coverage run g0atm0/test_dbutil.py
-                    coverage run g0atm0/test_customer.py
-                    coverage run g0atm0/test_intergrate.py
-                    coverage html -d g0atm0/coverage-reports
+                    coverage run g0atm0/tests/test_dbutil.py
+                    coverage run g0atm0/tests/test_customer.py
+                    coverage run g0atm0/tests/test_intergrate.py
+                    coverage html -d g0atm0/tests/coverage-reports
                     '''
                 //withGroovy(jdk: 'jdk17', tool: 'groovy4011') {
                 //    System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
@@ -55,7 +55,7 @@ pipeline {
             }
              post {
                always {
-                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'g0atm0/coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'g0atm0/tests/coverage-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                }
             }
 
