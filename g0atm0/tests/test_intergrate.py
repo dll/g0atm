@@ -2,7 +2,7 @@
 import unittest
 
 # 加载测试用例
-import test_customer
+from g0atm0.tests import test_customer
 import test_dbutil
 
 class TestIntergrate:

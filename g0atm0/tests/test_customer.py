@@ -2,8 +2,8 @@
 
 import unittest
 from unittest.mock import Mock
-from customer import Customer
-from dbutil import DbUtil
+from g0atm0.views.customer import Customer
+from g0atm0.models.dbutil import DbUtil
 
 class TestCustomer(unittest.TestCase):
     def test_login_true(self):

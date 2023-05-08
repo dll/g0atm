@@ -9,7 +9,7 @@
 # 
 #######################################################
 
-from dbutil import DbUtil
+from g0atm0.models.dbutil import DbUtil
 
 class Customer:
     id = '123456'

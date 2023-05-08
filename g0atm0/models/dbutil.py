@@ -10,7 +10,7 @@
 #######################################################
 import psycopg2
 import psycopg2.extras
-from pgini import PgIni
+from g0atm0.models.pgini import PgIni
 
 # 数据库实用程序：连接数据库，减少存取转查等连接数据库的重复代码。复用此类
 
