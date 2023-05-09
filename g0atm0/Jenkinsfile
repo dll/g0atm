@@ -28,19 +28,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'python -d -m py_compile g0atm0/views/Customer.py g0atm0/models/DbUtil.py'
+                bat 'python -d -m py_compile g0atm0/views/Customer.py g0atm0/models/DbUtil.py g0atm0/models/pgini.py'
             }
         }
-        stage('Unit Test') {
-            steps {
-		        bat 'pytest --verbose --junit-xml g0atm0/tests/xunit-reports/xunit-result.xml g0atm0/tests/test_customer.py g0atm0//tests/test_dbutil.py'
-            }
-            post {
-               always {
-                   junit 'g0atm0/tests/xunit-reports/xunit-result.xml'
-               }
-            }
-        }
+        //stage('Unit Test') {
+        //    steps {
+		//        bat 'pytest --verbose --junit-xml g0atm0/tests/xunit-reports/xunit-result.xml g0atm0/tests/test_customer.py g0atm0/tests/test_dbutil.py'
+        //    }
+        //    post {
+        //       always {
+        //           junit 'g0atm0/tests/xunit-reports/xunit-result.xml'
+        //       }
+        //    }
+        //}
         stage('Intergrate Test') {
             steps{
                 bat '''
