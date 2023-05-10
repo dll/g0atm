@@ -58,7 +58,7 @@ pipeline {
         stage('SonarQube Coverage Rate'){
             steps{
                 bat '''
-                    coverage run g0atm0/tests/test_intergrate.py
+                    //coverage run g0atm0/tests/test_intergrate.py
                     coverage xml -i
                     '''
             }

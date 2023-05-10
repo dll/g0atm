@@ -1,8 +1,6 @@
 # -*- coding: UTF-8 -*-
 import unittest
 
-# 加载测试用例
-import test_dbutil
 
 class TestIntergrate:
 
@@ -10,11 +8,12 @@ class TestIntergrate:
         # 将测试用例添加到测试集合
         suite = unittest.TestSuite()
         # 测试登录成功
-        from g0atm0.tests import test_customer
-        suite.addTest(test_dbutil.TestDbUtil("test_create_connection"))
-        suite.addTest(test_dbutil.TestDbUtil("test_validate_id_true"))
-        suite.addTest(test_dbutil.TestDbUtil("test_validate_pin_true"))
-        suite.addTest(test_customer.TestCustomer("test_login_true"))
+        from g0atm0.tests.test_dbutil import TestDbUtil
+        suite.addTest(TestDbUtil("test_create_connection"))
+        suite.addTest(TestDbUtil("test_validate_id_true"))
+        suite.addTest(TestDbUtil("test_validate_pin_true"))
+        from g0atm0.tests.test_customer import TestCustomer
+        suite.addTest(TestCustomer("test_login_true"))
 
         runner = unittest.TextTestRunner()
         runner.run(suite)
@@ -23,10 +22,11 @@ class TestIntergrate:
         # 将测试用例添加到测试集合
         suite = unittest.TestSuite()
         # 测试登录失败：账号错误
-        from g0atm0.tests import test_customer
-        suite.addTest(test_dbutil.TestDbUtil("test_create_connection"))
-        suite.addTest(test_dbutil.TestDbUtil("test_validate_id_false"))
-        suite.addTest(test_customer.TestCustomer("test_login_false"))
+        from g0atm0.tests.test_dbutil import TestDbUtil
+        from g0atm0.tests.test_customer import TestCustomer
+        suite.addTest(TestDbUtil("test_create_connection"))
+        suite.addTest(TestDbUtil("test_validate_id_false"))
+        suite.addTest(TestCustomer("test_login_false"))
 
         runner = unittest.TextTestRunner()
         runner.run(suite)
@@ -35,15 +35,17 @@ class TestIntergrate:
         # 将测试用例添加到测试集合
         suite = unittest.TestSuite()
         # 测试登录失败：密码错误
-        from g0atm0.tests import test_customer
-        suite.addTest(test_dbutil.TestDbUtil("test_create_connection"))
-        suite.addTest(test_dbutil.TestDbUtil("test_validate_id_true"))
-        suite.addTest(test_dbutil.TestDbUtil("test_validate_pin_false"))
-        suite.addTest(test_customer.TestCustomer("test_login_false"))
+        from g0atm0.tests.test_dbutil import TestDbUtil
+        suite.addTest(TestDbUtil("test_create_connection"))
+        suite.addTest(TestDbUtil("test_validate_id_true"))
+        suite.addTest(TestDbUtil("test_validate_pin_false"))
+        from g0atm0.tests.test_customer import TestCustomer
+        suite.addTest(TestCustomer("test_login_false"))
 
-    # 运行测试用例
+        # 运行测试用例
         runner = unittest.TextTestRunner()
         runner.run(suite)
+
 
 itest = TestIntergrate()
 itest.test_login_atm()
