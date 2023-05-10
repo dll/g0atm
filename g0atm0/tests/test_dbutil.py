@@ -15,6 +15,7 @@ class TestDbUtil(unittest.TestCase):
 
     def test_validate_id_true(self):
         from g0atm0.views.customer import Customer
+        from g0atm0.models.dbutil import DbUtil
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123456"
         DbUtil.input_pin = Mock()
@@ -22,6 +23,7 @@ class TestDbUtil(unittest.TestCase):
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), True, "账号匹配")
     def test_validate_id_pin(self):
         from g0atm0.views.customer import Customer
+        from g0atm0.models.dbutil import DbUtil
         Customer.input_id = Mock()
         Customer.input_id.return_value = "111111"
         DbUtil.input_pin = Mock()
@@ -29,17 +31,20 @@ class TestDbUtil(unittest.TestCase):
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), True, "账号匹配")
 
     def test_validate_id_false(self):
+        from g0atm0.views.customer import Customer
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123457"
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), False, "账号错误")
 
     def test_validate_id_less6(self):
+        from g0atm0.views.customer import Customer
         Customer.input_id = Mock()
         Customer.input_id.return_value = "12345"
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), False,
                          "账号小于6位数字")
 
     def test_validate_id_more6(self):
+        from g0atm0.views.customer import Customer
         Customer.input_id = Mock()
         Customer.input_id.return_value = "1234567"
         self.assertEqual(self.dbutil.validate_id(self.dbutil.create_connection(), Customer.input_id.return_value), False,
