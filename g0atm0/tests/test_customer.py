@@ -1,16 +1,11 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_DIR)
-
 import unittest
 from unittest.mock import Mock
-from g0atm0.views.customer import Customer
-from g0atm0.models.dbutil import DbUtil
 
 class TestCustomer(unittest.TestCase):
     def test_login_true(self):
+        from g0atm0.views.customer import Customer
+        from g0atm0.models.dbutil import DbUtil
         customer = Customer()
         Customer.input_id = Mock()
         Customer.input_id.return_value = "111111"
@@ -19,6 +14,8 @@ class TestCustomer(unittest.TestCase):
         self.assertEqual(customer.login(), True, "账号密码匹配，登录ATM成功")
 
     def test_login_false(self):
+        from g0atm0.views.customer import Customer
+        from g0atm0.models.dbutil import DbUtil
         customer = Customer()
         Customer.input_id = Mock()
         Customer.input_id.return_value = "123456"
