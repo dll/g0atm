@@ -17,7 +17,6 @@ pipeline {
                 script{
                     sleep(30)
                     timeout(time: 10, unit: 'MINUTES'){
-                        //waitForQualityGate abortPipeline:true
                         def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
@@ -41,12 +40,11 @@ pipeline {
                }
             }
         }
-        stage('Intergrate Test') {
+        stage('Jenkins Coverage Rate') {
             steps{
                 bat '''
                     coverage run g0atm0/tests/test_dbutil.py
                     coverage run g0atm0/tests/test_customer.py
-                    coverage run g0atm0/tests/test_intergrate.py
                     coverage html -d g0atm0/tests/coverage-reports
                     '''
             }
@@ -60,7 +58,8 @@ pipeline {
         stage('SonarQube Coverage Rate'){
             steps{
                 bat '''
-                    nosetests -sv --with-xunit --xunit-file=nosetests.xml --with-xcoverage --xcoverage-file=coverage.xml
+                    coverage run g0atm0/tests/test_intergrate.py
+                    coverage xml -i
                     '''
             }
         }
