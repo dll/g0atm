@@ -5,8 +5,8 @@ block_cipher = None
 
 
 a = Analysis(
-    ['./g0atm0/views/customer.py'],
-    pathex=['./venv/Lib/site-packages','./g0atm0/views/customer.py','./g0atm0/models/dbutil.py','./g0atm0/models/pgini.py'],
+    ['./views/customer.py'],
+    pathex=['./venv/Lib/site-packages','./views/customer.py','./models/dbutil.py','./models/pgini.py'],
     binaries=[],
     datas=[('./pg.env','./pg.env')],
     hiddenimports=[],
