@@ -64,11 +64,11 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'pyinstaller login_atm.spec'
+                bat 'pyinstaller g0atm0/login_atm.spec'
             }
             post {
                 success {
-                    archiveArtifacts 'dist/login_atm.exe'
+                    archiveArtifacts '/g0atm0/dist/login_atm.exe'
                 }
             }
         }
@@ -79,7 +79,7 @@ pipeline {
         }
         stage('Execute login_atm.exe'){
             steps{
-               bat '.\\dist\\login_atm.exe'
+               bat '.\\g0atm0\\dist\\login_atm.exe'
             }
         }
     }
